@@ -48,7 +48,7 @@ To run the server:
 ```console
 uvicorn app.main:app --reload
 ```
-
+----
 ## Full interview prompt
 
 Imagine you're tasked with creating a practical solution for a local shelter to manage their donation inventory. This shelter is in need of a user-friendly tool to accurately record and track the inflow and outflow of donations, and to generate insightful reports about their donation management.

@@ -1,28 +1,32 @@
-import datetime
+from collections import defaultdict
 from pydantic import BaseModel
 import uvicorn
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 
 app = FastAPI()
 
-class BaseDonation(BaseModel):
+app_db = None
+
+def get_db():
+    global app_db
+    if app_db == None:
+        app_db = defaultdict(list)
+    return app_db
+
+class Donation(BaseModel):
     donor_name: str
     donation_type: str
     units_donated: str
     donation_date: str
 
-class DonationWithID(BaseDonation):
-    timestamp: str
-
 @app.post("/")
-async def register_donation(donation: BaseDonation) -> DonationWithID:
-    return {
-        "donor_name": "phil",
-        "donation_type": "money",
-        "units_donated": "5",
-        "donation_date": "2008-09-15",
-        "timestamp": "12345"
-    }
+async def register_donation(donation: Donation, db: dict = Depends(get_db)) -> Donation:
+    db["donations"].append(donation)
+    return donation
+
+@app.get("/")
+async def get_donations(db: dict = Depends(get_db)):
+    return db
 
 # for debugging purposes
 if __name__ == "__main__":

@@ -48,7 +48,7 @@ async def register_donation(donation: Donation, db: dict = Depends(get_db)) -> D
 
 
 @app.post("/distributions/")
-async def register_donation(distribution: Distribution, db: dict = Depends(get_db)) -> Distribution:
+async def register_distribution(distribution: Distribution, db: dict = Depends(get_db)) -> Distribution:
     db["distributions"].append(distribution)
     return distribution
 

@@ -55,6 +55,9 @@ async def register_distribution(distribution: Distribution, db: dict = Depends(g
 
 @app.get("/database/")
 async def get_full_database(db: dict = Depends(get_db)) -> dict:
+    """
+    This endpoint only exists for testing
+    """
     return db
 
 

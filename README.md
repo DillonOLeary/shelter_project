@@ -48,6 +48,9 @@ To run the server:
 ```console
 uvicorn app.main:app --reload
 ```
+
+Once server is running, you can view generated API documentation at `http://127.0.0.1:8000/docs`
+
 ----
 ## Full interview prompt
 

@@ -1,5 +1,6 @@
 from collections import defaultdict
 from fastapi.testclient import TestClient
+import pytest
 from .main import app, get_db
 
 test_db = defaultdict(list)
@@ -9,19 +10,21 @@ def get_test_db() -> defaultdict:
     return test_db
 
 
-def teardown():
-    global test_db
-    test_db = defaultdict(list)
-
-
 app.dependency_overrides[get_db] = get_test_db
 
 client = TestClient(app)
 
+@pytest.fixture(autouse=True)
+def run_before_and_after_tests():
+    # A test function will be run at this point
+    yield
+    global test_db
+    test_db = defaultdict(list)
+
 
 def test_post_donation():
     response = client.post(
-        "/",
+        "/donations/",
         json={
             "donor_name": "phil",
             "donation_type": "money",
@@ -37,12 +40,26 @@ def test_post_donation():
         "donation_date": "2008-09-15"
     }
 
-    teardown()
+def test_post_distribution():
+    response = client.post(
+        "/distributions/",
+        json={
+            "donation_type": "money",
+            "units_distributed": "5",
+            "distributed_date": "2015-03-20"
+        }
+    )
+    assert response.status_code == 200
+    assert response.json() == {
+        "donation_type": "money",
+        "units_distributed": "5",
+        "distributed_date": "2015-03-20"
+    }
 
 
 def test_post_bad_donation():
     response = client.post(
-        "/",
+        "/donations/",
         json={
             "donor_name": "phil",
             "units_donated": "5",
@@ -54,7 +71,7 @@ def test_post_bad_donation():
 
 def test_get_report():
     client.post(
-        "/",
+        "/donations/",
         json={
             "donor_name": "sasha",
             "donation_type": "clothes",
@@ -62,7 +79,7 @@ def test_get_report():
             "donation_date": "2012-10-15"
         }
     )
-    response = client.get("/")
+    response = client.get("/donations/")
     assert response.status_code == 200
     assert response.json() == {
         "donations": [
@@ -74,5 +91,3 @@ def test_get_report():
             }
         ]
     }
-
-    teardown()

@@ -7,11 +7,13 @@ app = FastAPI()
 
 app_db = None
 
+
 def get_db():
     global app_db
     if app_db == None:
         app_db = defaultdict(list)
     return app_db
+
 
 class Donation(BaseModel):
     donor_name: str
@@ -19,12 +21,26 @@ class Donation(BaseModel):
     units_donated: str
     donation_date: str
 
-@app.post("/")
+
+class Distribution(BaseModel):
+    donation_type: str
+    units_distributed: str
+    distributed_date: str
+
+
+@app.post("/donations/")
 async def register_donation(donation: Donation, db: dict = Depends(get_db)) -> Donation:
     db["donations"].append(donation)
     return donation
 
-@app.get("/")
+
+@app.post("/distributions/")
+async def register_donation(distribution: Distribution, db: dict = Depends(get_db)) -> Distribution:
+    db["distributions"].append(distribution)
+    return distribution
+
+
+@app.get("/donations/")
 async def get_donations(db: dict = Depends(get_db)):
     return db
 

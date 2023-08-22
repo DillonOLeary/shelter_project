@@ -1,35 +1,55 @@
-import React, {ReactElement, FC} from "react";
-import {Box, Button, FilledInput, FormControl, FormHelperText, IconButton, Input, InputAdornment, InputLabel, OutlinedInput, TextField, Typography} from "@mui/material";
-import { VisibilityOff, Visibility } from "@mui/icons-material";
+import React, { ReactElement, FC, useState } from "react";
+import { Box, Button, TextField } from "@mui/material";
 
 const Donate: FC<any> = (): ReactElement => {
+    const [inputs, setInputs] = useState({
+        donorName: "",
+        donationType: "",
+        unitsDonated: "",
+        donationDate: ""
+    });
+    function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+        const { name, value } = event.target;
+        setInputs({ ...inputs, [name]: value });
+    }
     return (
-        <Box
-            component="form"
-            sx={{
-            '& .MuiTextField-root': { m: 1, width: '25ch' },
-            }}
-            noValidate
-            autoComplete="off"
-        >
-        <TextField
-          id="donor-name"
-          label="Donor Name"
-        />
-        <TextField
-          id="donation-type"
-          label="Donation Type"
-        />
-        <TextField
-          id="units-donated"
-          label="Units Donated"
-        />
-        <TextField
-          id="donation-date"
-          label="Donation Date"
-        />
-        <Button sx={{ m: 1 }} type="submit" variant="outlined">Submit</Button>
-      </Box>
+        <form>
+            <Box
+                component="form"
+                sx={{
+                    '& .MuiTextField-root': { m: 1, width: '25ch' },
+                }}
+                noValidate
+                autoComplete="off"
+            >
+                <TextField
+                    value={inputs.donorName}
+                    name="donorName"
+                    label="Donor Name"
+                    onChange={handleInputChange}
+                />
+                <TextField
+                    value={inputs.donationType}
+                    name="donationType"
+                    label="Donation Type"
+                    onChange={handleInputChange}
+                />
+                <TextField
+                    value={inputs.unitsDonated}
+                    name="unitsDonated"
+                    label="Units Donated"
+                    onChange={handleInputChange}
+                    type={"number"}
+                />
+                <TextField
+                    value={inputs.donationDate}
+                    name="donationDate"
+                    label="Donation Date"
+                    onChange={handleInputChange}
+                />
+                <Button sx={{ m: 1 }} type="submit" variant="outlined">Submit</Button>
+            </Box>
+        </form>
     );
 };
 

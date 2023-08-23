@@ -1,7 +1,13 @@
 from collections import defaultdict
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 import uvicorn
 from fastapi import Depends, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+
+def to_camel(string: str) -> str:
+    string_split = string.split("_")
+    return string_split[0] + "".join(word.capitalize() for word in string_split[1:])
 
 
 app = FastAPI(
@@ -18,6 +24,14 @@ app = FastAPI(
     },
 )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app_db = None
 
 
@@ -29,6 +43,8 @@ def get_db():
 
 
 class Donation(BaseModel):
+    model_config = ConfigDict(alias_generator=to_camel)
+
     donor_name: str
     donation_type: str
     units_donated: float
@@ -36,6 +52,8 @@ class Donation(BaseModel):
 
 
 class Distribution(BaseModel):
+    model_config = ConfigDict(alias_generator=to_camel)
+
     donation_type: str
     units_distributed: float
     distributed_date: str

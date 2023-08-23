@@ -12,9 +12,22 @@ const Donate: FC<any> = (): ReactElement => {
         const { name, value } = event.target;
         setInputs({ ...inputs, [name]: value });
     }
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(inputs);
+        console.log(`Put request with ${JSON.stringify(inputs)}`);
+        submitDonation();
+    }
+    const submitDonation = async() => {
+        const url = 'http://127.0.0.1:8000/donations'
+        const method = 'POST'
+
+        await fetch(url, {
+            method:method,
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(inputs)
+        })
     }
     return (
         <Box

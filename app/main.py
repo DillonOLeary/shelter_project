@@ -56,7 +56,7 @@ class Distribution(BaseModel):
 
     donation_type: str
     units_distributed: float
-    distributed_date: str
+    distribution_date: str
 
 
 @app.post("/donations/")
@@ -80,7 +80,7 @@ async def get_full_database(db: dict = Depends(get_db)) -> dict:
 
 
 @app.get("/balances/")
-async def get_balances(db: dict = Depends(get_db)) -> dict:
+async def get_balances(db: dict = Depends(get_db)) -> list[dict]:
     balances = defaultdict(float)
     donation_entry: Donation
     for donation_entry in db["donations"]:
@@ -90,7 +90,7 @@ async def get_balances(db: dict = Depends(get_db)) -> dict:
     for distribution_entry in db["distributions"]:
         balances[distribution_entry.donation_type] -= distribution_entry.units_distributed
 
-    return {"balances": balances}
+    return [{"category": key, "quantity": value} for key, value in balances.items()]
 
 
 # for debugging purposes

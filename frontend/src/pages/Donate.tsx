@@ -17,16 +17,16 @@ const Donate: FC<any> = (): ReactElement => {
         console.log(`Put request with ${JSON.stringify(inputs)}`);
         submitDonation();
     }
-    const submitDonation = async() => {
+    const submitDonation = async () => {
         const url = 'http://127.0.0.1:8000/donations'
         const method = 'POST'
 
         await fetch(url, {
-            method:method,
-            headers:{
+            method: method,
+            headers: {
                 'Content-Type': 'application/json',
             },
-            body:JSON.stringify(inputs)
+            body: JSON.stringify(inputs)
         })
     }
     return (
@@ -63,6 +63,10 @@ const Donate: FC<any> = (): ReactElement => {
                 name="donationDate"
                 label="Donation Date"
                 onChange={handleInputChange}
+                type={"date"}
+                InputLabelProps={{
+                    shrink: true,
+                }}
             />
             <Button sx={{ m: 1 }} type="submit" variant="outlined">Submit</Button>
         </Box>

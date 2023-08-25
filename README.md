@@ -1,5 +1,5 @@
 # Shelter Project
-This project is a basic donation inventory management application. I wrote it as a part of an interview for Open Seattle.
+This project is a basic donation inventory management application. I wrote it as a part of an interview for a volunteer position at Open Seattle.
 
 ## Project Requirements
 1. Donation Registration: A feature that allows the shelter staff to record details of the donations, such as the donor's name, type of donation (money, food, clothing, etc.), quantity or amount donated, and the date of the donation.
@@ -11,7 +11,7 @@ This project is a basic donation inventory management application. I wrote it as
 To solve this, I created two solutions:
 
 ## Google Suite Solution
-This solution uses the Google Suite to handle data intake and report generation. I strongly prefer this solution given my understanding of the requirements and only worked on the FastAPI solution to highlight my coding.
+This solution uses the Google Suite to handle data intake and report generation. I strongly prefer this solution given my understanding of the requirements and I only worked on the FastAPI solution to highlight my coding.
 - Donation Registration Form: `https://forms.gle/Cjf4HdFWKvvPTjcf8`
   - staff can record donations here
 - Donation Distribution Form: `https://forms.gle/dqnYfcab7yVNYmkE9`

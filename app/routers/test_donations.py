@@ -17,3 +17,14 @@ def test_post_donation():
         "unitsDonated": 5.0,
         "donationDate": "2008-09-15"
     }
+
+def test_post_bad_donation():
+    response = client.post(
+        "/donations/",
+        json={
+            "donorName": "phil",
+            "unitsDonated": "5",
+            "donationDate": "2008-09-15"
+        }
+    )
+    assert response.status_code == 422

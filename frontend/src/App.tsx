@@ -6,7 +6,7 @@ import { routes as appRoutes } from "./routes";
 import Navbar from "./components/Navbar";
 
 function App() {
-  
+
   // define theme
   const theme = createTheme({
     palette: {

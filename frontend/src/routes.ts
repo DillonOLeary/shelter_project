@@ -4,7 +4,7 @@ import Distribute from "./pages/Distribute";
 import Report from "./pages/Report";
 
 // other
-import {FC} from "react";
+import { FC } from "react";
 
 // interface
 interface Route {

@@ -5,7 +5,7 @@ import Donors from "../components/Donors";
 
 const Report: FC<any> = (): ReactElement => {
     return (
-        <Box  sx={{ m: 1}}>
+        <Box sx={{ m: 1 }}>
             <h2>
                 Balances
             </h2>

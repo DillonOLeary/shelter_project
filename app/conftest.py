@@ -2,7 +2,7 @@ from collections import defaultdict
 from fastapi.testclient import TestClient
 import pytest
 
-from app.utils import get_fake_db
+from app.db import get_fake_db
 from .main import app
 
 test_db = defaultdict(list)

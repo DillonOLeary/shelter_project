@@ -1,7 +1,7 @@
 from fastapi import Depends, APIRouter
 from pydantic import BaseModel, ConfigDict, validator
 
-from app.main import get_fake_db
+from app.db import get_fake_db
 from app.utils import to_camel
 
 router = APIRouter()

@@ -3,8 +3,9 @@ from pydantic import BaseModel, ConfigDict, validator
 import uvicorn
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.db import get_fake_db
 
-from app.utils import get_fake_db, to_camel
+from app.utils import to_camel
 
 from .routers import donations
 from .routers.donations import Donation
@@ -32,9 +33,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-app_db = None
-
 
 class Distribution(BaseModel):
     model_config = ConfigDict(alias_generator=to_camel)

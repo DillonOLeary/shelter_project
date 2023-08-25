@@ -20,5 +20,9 @@ class Distribution(BaseModel):
 
 @router.post("/distributions/")
 async def register_distribution(distribution: Distribution, db: dict = Depends(get_fake_db)) -> Distribution:
+    """
+    Register the distribution of resources from the shelter. This will subtract from the balance for
+    the category that was distributed.
+    """
     db["distributions"].append(distribution)
     return distribution

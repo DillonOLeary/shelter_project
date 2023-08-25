@@ -13,6 +13,10 @@ def label_kv_in_donation_dict(balances):
 
 @router.get("/balances/")
 async def get_balances(db: dict = Depends(get_fake_db)) -> list[dict]:
+    """
+    This returns a summary of the balances in each category of
+    resource the shelter has.
+    """
     balances = defaultdict(float)
     donation_entry: Donation
     for donation_entry in db["donations"]:
@@ -27,6 +31,9 @@ async def get_balances(db: dict = Depends(get_fake_db)) -> list[dict]:
 
 @router.get("/donor-records/")
 async def get_donor_records(db: dict = Depends(get_fake_db)) -> list:
+    """
+    This returns a summary of resources that each donor has given.
+    """
     # TODO refactor - this is a dictionary of donors with all their balances for each category of donation
     donor_records = defaultdict(lambda: defaultdict(float))
     donation_entry: Donation

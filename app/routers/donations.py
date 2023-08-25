@@ -21,5 +21,8 @@ class Donation(BaseModel):
 
 @router.post("/donations/")
 async def register_donation(donation: Donation, db: dict = Depends(get_fake_db)) -> Donation:
+    """
+    Register a donation to the shelter
+    """
     db["donations"].append(donation)
     return donation

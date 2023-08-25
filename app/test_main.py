@@ -95,7 +95,54 @@ def test_get_full_database():
     }
 
 
-def test_generate_report():
+def test_get_balances():
+    generate_database()
+    response = client.get("/balances/")
+    assert response.status_code == 200
+    assert response.json() == [
+        {
+            "category": "money",
+            "quantity": 11.0
+        },
+        {
+            "category": "clothes",
+            "quantity": 2.0
+        }
+    ]
+
+
+def test_get_donor_records():
+    generate_database()
+    response = client.get("/donor-records/")
+    assert response.status_code == 200
+    res_json = response.json()
+    assert response.json() == [
+        {
+            "donor": "phil",
+            "record": [
+                {
+                    "category": "money",
+                    "quantity": 12.0
+                },
+                {
+                    "category": "clothes",
+                    "quantity": 2.0
+                }
+            ]
+        },
+        {
+            "donor": "kristin",
+            "record": [
+                {
+                    "category": "money",
+                    "quantity": 3.0
+                }
+            ]
+        }
+    ]
+
+
+def generate_database():
     client.post(
         "/donations/",
         json={
@@ -103,6 +150,15 @@ def test_generate_report():
             "donationType": "money",
             "unitsDonated": "5",
             "donationDate": "2008-09-15"
+        }
+    )
+    client.post(
+        "/donations/",
+        json={
+            "donorName": "phil",
+            "donationType": "money",
+            "unitsDonated": "7",
+            "donationDate": "2009-09-15"
         }
     )
     client.post(
@@ -117,7 +173,7 @@ def test_generate_report():
     client.post(
         "/donations/",
         json={
-            "donorName": "sasha",
+            "donorName": "phil",
             "donationType": "clothes",
             "unitsDonated": "2",
             "donationDate": "2012-10-15"
@@ -131,15 +187,3 @@ def test_generate_report():
             "distributionDate": "2023-07-20"
         }
     )
-    response = client.get("/balances/")
-    assert response.status_code == 200
-    assert response.json() == [
-        {
-            "category": "money",
-            "quantity": 4.0
-        },
-        {
-            "category": "clothes",
-            "quantity": 2.0
-        }
-    ]

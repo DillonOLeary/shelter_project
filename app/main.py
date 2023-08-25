@@ -1,5 +1,5 @@
 from collections import defaultdict
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, validator
 import uvicorn
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -50,6 +50,10 @@ class Donation(BaseModel):
     units_donated: float
     donation_date: str
 
+    @validator("donor_name", "donation_type", pre=True)
+    def to_lowercase(cls, value: str):
+        return value.lower()
+
 
 class Distribution(BaseModel):
     model_config = ConfigDict(alias_generator=to_camel)
@@ -57,6 +61,10 @@ class Distribution(BaseModel):
     donation_type: str
     units_distributed: float
     distribution_date: str
+
+    @validator("donation_type", pre=True)
+    def to_lowercase(cls, value: str):
+        return value.lower()
 
 
 @app.post("/donations/")

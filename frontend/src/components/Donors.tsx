@@ -20,8 +20,8 @@ const Donors: FC<any> = (): ReactElement => {
           <Table sx={{ minWidth: 200 }} aria-label="simple table">
               <TableHead>
                   <TableRow>
-                      <TableCell sx={{ fontWeight: 'bold' }}>Category</TableCell>
-                      <TableCell sx={{ fontWeight: 'bold' }} align="right">Balance</TableCell>
+                      <TableCell sx={{ fontWeight: 'bold' }}>Donor</TableCell>
+                      <TableCell sx={{ fontWeight: 'bold' }} align="right">Donor's Balances</TableCell>
                   </TableRow>
               </TableHead>
               <TableBody>

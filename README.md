@@ -11,7 +11,7 @@ This project is a basic donation inventory management application. I wrote it as
 To solve this, I created two solutions:
 
 ## Google Suite Solution
-This solution uses the Google Suite to handle data intake and report generation. I strongly prefer this solution given my understanding of the requirements and I only worked on the FastAPI solution to highlight my coding.
+This solution uses the Google Suite to handle data intake and report generation. I strongly prefer this solution given my understanding of the requirements, I only worked on the FastAPI solution to highlight my coding.
 - Donation Registration Form: `https://forms.gle/Cjf4HdFWKvvPTjcf8`
   - staff can record donations here
 - Donation Distribution Form: `https://forms.gle/dqnYfcab7yVNYmkE9`
@@ -37,7 +37,7 @@ Commands for linux/mac
 
 ### Running the backend server
 
-First, create a virtual enviroment and activate it:
+After downloading the project and navigating to the project root directory, create a virtual enviroment and activate it:
 
 ```console
 python3 -m venv venv

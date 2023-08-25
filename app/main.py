@@ -4,10 +4,10 @@ import uvicorn
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.utils import get_fake_db, to_camel
 
-def to_camel(string: str) -> str:
-    string_split = string.split("_")
-    return string_split[0] + "".join(word.capitalize() for word in string_split[1:])
+from .routers import donations
+from .routers.donations import Donation
 
 
 app = FastAPI(
@@ -24,6 +24,7 @@ app = FastAPI(
     },
 )
 
+app.include_router(donations.router)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],
@@ -33,26 +34,6 @@ app.add_middleware(
 )
 
 app_db = None
-
-
-def get_db():
-    global app_db
-    if app_db == None:
-        app_db = defaultdict(list)
-    return app_db
-
-
-class Donation(BaseModel):
-    model_config = ConfigDict(alias_generator=to_camel)
-
-    donor_name: str
-    donation_type: str
-    units_donated: float
-    donation_date: str
-
-    @validator("donor_name", "donation_type", pre=True)
-    def to_lowercase(cls, value: str):
-        return value.lower()
 
 
 class Distribution(BaseModel):
@@ -67,20 +48,14 @@ class Distribution(BaseModel):
         return value.lower()
 
 
-@app.post("/donations/")
-async def register_donation(donation: Donation, db: dict = Depends(get_db)) -> Donation:
-    db["donations"].append(donation)
-    return donation
-
-
 @app.post("/distributions/")
-async def register_distribution(distribution: Distribution, db: dict = Depends(get_db)) -> Distribution:
+async def register_distribution(distribution: Distribution, db: dict = Depends(get_fake_db)) -> Distribution:
     db["distributions"].append(distribution)
     return distribution
 
 
 @app.get("/database/")
-async def get_full_database(db: dict = Depends(get_db)) -> dict:
+async def get_full_database(db: dict = Depends(get_fake_db)) -> dict:
     """
     This endpoint only exists for testing
     """
@@ -92,7 +67,7 @@ def label_kv_in_donation_dict(balances):
 
 
 @app.get("/balances/")
-async def get_balances(db: dict = Depends(get_db)) -> list[dict]:
+async def get_balances(db: dict = Depends(get_fake_db)) -> list[dict]:
     balances = defaultdict(float)
     donation_entry: Donation
     for donation_entry in db["donations"]:
@@ -106,7 +81,7 @@ async def get_balances(db: dict = Depends(get_db)) -> list[dict]:
 
 
 @app.get("/donor-records/")
-async def get_donor_records(db: dict = Depends(get_db)) -> list:
+async def get_donor_records(db: dict = Depends(get_fake_db)) -> list:
     # TODO refactor - this is a dictionary of donors with all their balances for each category of donation
     donor_records = defaultdict(lambda: defaultdict(float))
     donation_entry: Donation

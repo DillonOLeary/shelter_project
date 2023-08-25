@@ -30,7 +30,7 @@ def generate_database():
         "/donations/",
         json={
             "donorName": "phil",
-            "donationType": "money",
+            "donationType": "Money",
             "unitsDonated": "5",
             "donationDate": "2008-09-15"
         }
@@ -65,7 +65,7 @@ def generate_database():
     client.post(
         "/distributions/",
         json={
-            "donationType": "money",
+            "donationType": "MONEY",
             "unitsDistributed": "4",
             "distributionDate": "2023-07-20"
         }

@@ -30,6 +30,7 @@ Cons:
 - be not coding a solution, we give up some fine grained control. Google Suite is pretty extensive, so I don't think this would be much of an issue
 ----
 ## FastAPI Solution (AKA this code)
+This full stack solution uses [FastAPI](https://fastapi.tiangolo.com) for the backend and [React](https://react.dev) for the frontend.
 
 ## How to run
 Commands for linux/mac

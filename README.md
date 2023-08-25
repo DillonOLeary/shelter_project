@@ -35,7 +35,7 @@ This full stack solution uses [FastAPI](https://fastapi.tiangolo.com) for the ba
 ## How to run
 Commands for linux/mac
 
-### Setting up the enviroment
+### Running the backend server
 
 First, create a virtual enviroment and activate it:
 
@@ -49,8 +49,6 @@ Then install the dependencies:
 ```console
 pip install -r requirements.txt
 ```
-
-### Running the backend server
 To run the server:
 
 ```console

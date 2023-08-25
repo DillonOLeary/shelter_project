@@ -42,7 +42,7 @@ Then install the dependencies:
 pip install -r requirements.txt
 ```
 
-### Running the server
+### Running the backend server
 To run the server:
 
 ```console
@@ -50,6 +50,16 @@ uvicorn app.main:app --reload
 ```
 
 Once server is running, you can view generated API documentation at `http://127.0.0.1:8000/docs`
+
+### Running the frontend server
+In a different session, run:
+
+```console
+npm install
+npm start
+```
+
+The frontend can be viewed at `http://localhost:3000`
 
 ----
 ## Full interview prompt

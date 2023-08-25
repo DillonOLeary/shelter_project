@@ -19,7 +19,7 @@ export const routes: Array<Route> = [
     {
         key: 'donate-route',
         title: 'Donate',
-        path: '/Donate',
+        path: '/donate',
         enabled: true,
         component: Donate
     },

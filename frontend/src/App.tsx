@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { routes as appRoutes } from "./routes";
 import Navbar from "./components/Navbar";
 
@@ -39,6 +39,10 @@ function App() {
                 element={<route.component />}
               />
             ))}
+            <Route
+              path="/"
+              element={ <Navigate to="/donate" /> }
+            />
           </Routes>
         </Router>
       </Box>

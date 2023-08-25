@@ -21,7 +21,7 @@ const Donors: FC<any> = (): ReactElement => {
                 <TableHead>
                     <TableRow>
                         <TableCell sx={{ fontWeight: 'bold' }}>Donor</TableCell>
-                        <TableCell sx={{ fontWeight: 'bold' }} align="right">Donor's Balances</TableCell>
+                        <TableCell sx={{ fontWeight: 'bold' }} align="right">Donor's Total Contributions</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

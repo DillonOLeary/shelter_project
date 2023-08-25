@@ -78,8 +78,10 @@ async def get_full_database(db: dict = Depends(get_db)) -> dict:
     """
     return db
 
+
 def label_kv_in_donation_dict(balances):
     return [{"category": key, "quantity": value} for key, value in balances.items()]
+
 
 @app.get("/balances/")
 async def get_balances(db: dict = Depends(get_db)) -> list[dict]:
@@ -94,6 +96,7 @@ async def get_balances(db: dict = Depends(get_db)) -> list[dict]:
 
     return label_kv_in_donation_dict(balances)
 
+
 @app.get("/donor-records/")
 async def get_donor_records(db: dict = Depends(get_db)) -> list:
     # TODO refactor - this is a dictionary of donors with all their balances for each category of donation
@@ -102,9 +105,14 @@ async def get_donor_records(db: dict = Depends(get_db)) -> list:
     for donation_entry in db["donations"]:
         donor_records[donation_entry.donor_name][donation_entry.donation_type] += donation_entry.units_donated
 
-    
+    result_list = []
+    for donor, donor_contributions in donor_records.items():
+        result_list.append({
+            "donor": donor,
+            "record": label_kv_in_donation_dict(donor_contributions)
+        })
 
-    return [{"donor": donor, "record": label_kv_in_donation_dict(donor_contributions)} for donor, donor_contributions in donor_records.items()]
+    return result_list
 
 
 # for debugging purposes

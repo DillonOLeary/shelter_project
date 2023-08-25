@@ -6,6 +6,8 @@ This project is a basic donation inventory management application. I wrote it as
 1. Donation Distribution: A feature to log when and how much of the donations are distributed, capturing the type of donation, quantity or amount distributed, and the date of distribution.
 1. Donation Reports: Your solution should have the capacity to generate two types of reports: (1) An inventory report displaying the current status of donations, grouped by type. (2) A donator report, summarizing the total contributions received from each donor.
 
+----
+
 To solve this, I created two solutions:
 
 ## Google Suite Solution

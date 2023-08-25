@@ -55,6 +55,7 @@ Once server is running, you can view generated API documentation at `http://127.
 In a different session, run:
 
 ```console
+cd frontend
 npm install
 npm start
 ```

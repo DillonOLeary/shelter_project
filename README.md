@@ -33,9 +33,10 @@ Cons:
 This full stack solution uses [FastAPI](https://fastapi.tiangolo.com) for the backend and [React](https://react.dev) for the frontend.
 
 ## How to run
-Commands for linux/mac
-Using python version: Python 3.11.1
-Using Node v20.5.1
+Requirements:
+- Mac
+- Python 3.11.1
+- Node v20.5.1
 
 ### Running the backend server
 

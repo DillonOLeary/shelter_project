@@ -35,8 +35,8 @@ This full stack solution uses [FastAPI](https://fastapi.tiangolo.com) for the ba
 ## How to run
 Requirements:
 - Mac
-- Python 3.11.1
-- Node v20.5.1
+- Python 3.10+
+- Node v18+
 
 ### Running the backend server
 

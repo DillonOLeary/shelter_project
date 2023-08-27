@@ -30,12 +30,12 @@ Cons:
 - be not coding a solution, we give up some fine grained control. Google Suite is pretty extensive, so I don't think this would be much of an issue
 ----
 ## FastAPI Solution (AKA this code)
-[![python](https://img.shields.io/badge/Python-3.9-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.63.0-009688.svg?style=flat&logo=FastAPI&logoColor=white)](https://fastapi.tiangolo.com)
 This full stack solution uses [FastAPI](https://fastapi.tiangolo.com) for the backend and [React](https://react.dev) for the frontend.
 
 ## How to run
 Commands for linux/mac
+Using python version: Python 3.11.1
+Using Node v20.5.1
 
 ### Running the backend server
 

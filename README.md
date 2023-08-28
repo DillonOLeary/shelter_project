@@ -34,7 +34,7 @@ This full stack solution uses [FastAPI](https://fastapi.tiangolo.com) for the ba
 
 ## How to run
 Requirements:
-- Mac
+- Mac/Linux
 - Python 3.10+
 - Node v18+
 

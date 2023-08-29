@@ -29,12 +29,11 @@ Cons:
 - we are making our client dependent on Google, so Google could make changes they don't like
 - be not coding a solution, we give up some fine grained control. Google Suite is pretty extensive, so I don't think this would be much of an issue
 ----
-## FastAPI Solution (AKA this code)
+# FastAPI Solution (AKA this code)
 This full stack solution uses [FastAPI](https://fastapi.tiangolo.com) for the backend and [React](https://react.dev) for the frontend.
 
 ## How to run
 Requirements:
-- Mac/Linux
 - Python 3.10+
 - Node v18+
 
@@ -42,9 +41,15 @@ Requirements:
 
 After downloading the project and navigating to the project root directory, create a virtual enviroment and activate it:
 
+*Mac and Linux*
 ```console
 python3 -m venv venv
 source venv/bin/activate
+```
+*Windows
+```console
+py -m venv venv
+venv\Scripts\activate
 ```
 
 Then install the dependencies:
@@ -57,6 +62,10 @@ To run the server:
 ```console
 uvicorn app.main:app --reload
 ```
+
+```
+Note: you may need to delete uvloop from requirements.txt if you are using Windows. I need to test it more, but there seems to be bug with it, but removing the dependency doesn't create any issues
+``` 
 
 Once server is running, you can view generated API documentation at `http://127.0.0.1:8000/docs`
 

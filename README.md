@@ -46,7 +46,7 @@ After downloading the project and navigating to the project root directory, crea
 python3 -m venv venv
 source venv/bin/activate
 ```
-*Windows
+*Windows*
 ```console
 py -m venv venv
 venv\Scripts\activate
